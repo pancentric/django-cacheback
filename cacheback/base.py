@@ -196,15 +196,12 @@ class Job(object):
         # (a) args and kwargs for instantiating the class
         # (b) args and kwargs for calling the 'refresh' method
         try:
-            tasks.refresh_cache.apply_async(
-                kwargs=dict(
-                    klass_str=self.class_path,
-                    obj_args=self.get_constructor_args(),
-                    obj_kwargs=self.get_constructor_kwargs(),
-                    call_args=args,
-                    call_kwargs=kwargs
-                ),
-                **self.task_options
+            tasks.refresh_cache.delay(
+                klass_str=self.class_path,
+                obj_args=self.get_constructor_args(),
+                obj_kwargs=self.get_constructor_kwargs(),
+                call_args=args,
+                call_kwargs=kwargs
             )
         except Exception, e:
             # Handle exceptions from talking to RabbitMQ - eg connection

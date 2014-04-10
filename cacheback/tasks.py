@@ -1,14 +1,14 @@
 import time
+import logging
 
-from celery.task import task
-from celery.utils.log import get_task_logger
+from django_rq import job
 from django.utils import importlib
 
 
-logger = get_task_logger(__name__)
+logger = logging.getLogger(__name__)
 
 
-@task()
+@job
 def refresh_cache(klass_str, obj_args, obj_kwargs, call_args, call_kwargs):
     """
     Re-populate cache using the given job class.

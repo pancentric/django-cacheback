@@ -13,7 +13,7 @@ setup(name='django-cacheback',
       url='https://github.com/codeinthehole/django-cacheback',
       author="David Winterbottom",
       author_email="david.winterbottom@gmail.com",
-      description=("Caching library for Django that uses Celery "
+      description=("Caching library for Django that uses django-rq "
                    "to refresh cache items asynchronously"),
       long_description=file(os.path.join(PACKAGE_DIR, 'README.rst')).read(),
       license='MIT',
@@ -21,8 +21,8 @@ setup(name='django-cacheback',
       include_package_data=True,
       install_requires=[
           'django>=1.3',
-          'django-celery>=3.0',
-          ],
+          'django-rq>=0.6.1',
+      ],
       # See http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=['Environment :: Web Environment',
                    'Framework :: Django',
